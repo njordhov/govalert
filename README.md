@@ -11,7 +11,10 @@ Heroku is one of many available options for running GovAlert:
 ## Heroku Quick Start
 
 GovAlert can run on the Heroku PAAS <http://heroku.com>. Assuming you have an account on
-Heroku and have installed the Heroku Toolbelt on your workstation:
+Heroku.com and have installed the Heroku Toolbelt on your workstation, start by cloning the repo:
+
+    $ git clone git@github.com:TerjeNorderhaug/govalert.git
+    $ cd govalert
 
 Create the app by executing the following in a shell with the govalert root directory
 as current path:
