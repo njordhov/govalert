@@ -75,12 +75,12 @@ by adding the free Heroku Scheduler and open its dashboard:
     $ heroku addons:open scheduler
 
 On the Scheduler Dashboard:
-1. click “Add Job…”
-2. enter 'notify' as task after the dollar sign. 
-3. in the same field, enter an email address of yours for admin/replies
-4. select a frequency (e.g. once a day)
-5. specify dyno size (usually 1X, 2X to process large documents) 
-6. set next run time adjusted for time zone (typically at night, or in a few minutes for testing)
+  1. click “Add Job…”
+  2. enter 'notify' as task after the dollar sign. 
+  3. in the same field, enter an email address of yours for admin/replies
+  4. select a frequency (e.g. once a day)
+  5. specify dyno size (usually 1X, 2X to process large documents) 
+  6. set next run time adjusted for time zone (typically at night, or in a few minutes for testing)
 
 Please carefully read the Scheduler instructions if you're setting up production deployment
 crawling massive document repositories: 
@@ -142,30 +142,30 @@ Note that to have multiple search patterns for the same govbody, each has to be 
 
 The ElasticSearch API is documented at:
 
-http://www.elasticsearch.org/guide/reference/api/
+    http://www.elasticsearch.org/guide/reference/api/
 
 GovAlert creates a default index called 'gov'.
-$ curl -XPUT 'http://localhost:9200/gov/'
+    $ curl -XPUT 'http://localhost:9200/gov/'
 
 Substitute 'http://localhost:9200' in the examples with the URL for your ElasticSearch cluster, and 'gov' with your index name if different.
 
 The "harvester" mappings in the elasticSearch database declares JSON patterns that controls how to crawl when harvesting content from government websites.
 To retrieve the harvester mapping definition, execute : 
 
-$ curl -XGET 'http://localhost:9200/gov/harvester/_mapping'
+    $ curl -XGET 'http://localhost:9200/gov/harvester/_mapping'
 
 This should return a JSON structure like:
 
-{"harvester":
-  {"properties":
-    {"govbody":{"type":"string","index":"not_analyzed","store":true,"omit_norms":true,"index_options":"docs"},
-     "title":{"type":"string","index":"not_analyzed","store":true,"omit_norms":true,"index_options":"docs"},
-     "agendas":{"type":"object"},
-     "docs":{"type":"object"}}}}
+    {"harvester":  
+      {"properties":
+        {"govbody":{"type":"string","index":"not_analyzed","store":true,"omit_norms":true,"index_options":"docs"},
+         "title":{"type":"string","index":"not_analyzed","store":true,"omit_norms":true,"index_options":"docs"},
+         "agendas":{"type":"object"},
+         "docs":{"type":"object"}}}}
 
 Add named crawling patterns using the "harvester" mapping, such as:
 
-$ curl -XPUT 'http://localhost:9200/gov/harvester/mylocalgov' '{
+    $ curl -XPUT 'http://localhost:9200/gov/harvester/mylocalgov' '{
     "govbody":"ca.sd.encinitas",
     "title":"Encinitas",
     "agendas":{"mode":"granicus","url":"http://encinitas.granicus.com/ViewPublisherRSS.php?view_id=7&mode=agendas"} }'
@@ -174,11 +174,11 @@ This declares a crawl pattern to harvest agendas and support documents from the 
 
 The "subscription" mappings the the ElasticSearch database 
 
-$ curl -XGET 'http://localhost:9200/gov/subscription/_mapping'
+    $ curl -XGET 'http://localhost:9200/gov/subscription/_mapping'
 
 You can add subscriptions:
 
-$ curl -XPUT 'http://localhost:9200/gov/subscription/1' '{
+    $ curl -XPUT 'http://localhost:9200/gov/subscription/1' '{
     "email":"joe@doe.com",
     "query":"*" }'
 
