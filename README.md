@@ -52,11 +52,11 @@ You can run init to migrate the ElasticSearch database and add harvesting rules.
 For example, this will define a crawler for the City of La Mesa in the default index (all quotes, ampersands and slashes have to be escaped with a backslash - 
 see separate section for various JSON crawl patterns):
 
-    $ heroku run setup \'{\"title\":\"La Mesa\",\"govbody\":\"us.ca.lamesa\",\"agendas\":{\"url\":\"http://www.cityoflamesa.com/archive.aspx?AMID=30\&Type=\&ADID=\"}}\'
+    $ heroku run setup gov \'{\"title\":\"La Mesa\",\"govbody\":\"us.ca.lamesa\",\"agendas\":{\"url\":\"http://www.cityoflamesa.com/archive.aspx?AMID=30\&Type=\&ADID=\"}}\'
 
 For convenience, you may automatically escape the harvesting pattern from a multiline input, ending with ctrl-d:
 
-    $ sed -e "s/'/\'/g" -e 's/"/\"/g' -e "s/&/\&/g" -e "1s/^/\\'/" -e "\$s/\$/\\'/" | xargs -0 heroku run setup 
+    $ sed -e "s/'/\'/g" -e 's/"/\"/g' -e "s/&/\&/g" -e "1s/^/\\'/" -e "\$s/\$/\\'/" | xargs -0 heroku run setup gov 
        {"title" : "La Mesa",
         "govbody" : "us.ca.lamesa",
         "agendas" : {"url" : "http://www.cityoflamesa.com/archive.aspx?AMID=30&Type=&ADID="}}
@@ -67,7 +67,7 @@ Run setup with no arguments at any time to list all database indices and their a
 
     $ heroku run setup
 
-To make a test run harvesting documents and broadcasting alerts, execute the following, optionally with an admin/reply email address as argument:
+To make a test run harvesting documents and broadcasting alerts, run a notify command, preferably with an admin/reply email address as additional argument:
 
     $ heroku run notify
 
