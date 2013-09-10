@@ -172,7 +172,7 @@ This should return a JSON structure like:
 
 Add named crawling patterns using the "harvester" mapping, such as:
 
-    $ curl -XPUT 'http://localhost:9200/gov/harvester/mylocalgov' '{
+    $ curl -XPUT 'http://localhost:9200/gov/harvester/ca.sd.encinitas' '{
     "govbody":"ca.sd.encinitas",
     "title":"Encinitas",
     "agendas":{"mode":"granicus","url":"http://encinitas.granicus.com/ViewPublisherRSS.php?view_id=7&mode=agendas"} }'
