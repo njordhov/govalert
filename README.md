@@ -71,6 +71,9 @@ To make a test run harvesting documents and broadcasting alerts, run a notify co
 
     $ heroku run notify
 
+Expect to receive emails to the admin/reply address regarding the harvesting, 
+as well as email notifications for the subscriptions added using the web form or directly using the ElastocSearch API.  
+
 You can set up regular harvesting of government documents and alerts
 by adding the free Heroku Scheduler and open its dashboard:
 
@@ -81,7 +84,7 @@ On the Scheduler Dashboard:
   1. click “Add Job…”
   2. enter 'notify' as task after the dollar sign. 
   3. in the same field, enter an email address of yours for admin/replies
-  4. select a frequency (e.g. once a day)
+  4. select a frequency (e.g. daily)
   5. specify dyno size (usually 1X, 2X to process large documents) 
   6. set next run time adjusted for time zone (typically at night, or in a few minutes for testing)
 
@@ -147,7 +150,8 @@ The ElasticSearch API is documented at:
 
     http://www.elasticsearch.org/guide/reference/api/
 
-GovAlert creates a default index called 'gov'.
+GovAlert creates a default index called 'gov':
+
     $ curl -XPUT 'http://localhost:9200/gov/'
 
 Substitute 'http://localhost:9200' in the examples with the URL for your ElasticSearch cluster, and 'gov' with your index name if different.
