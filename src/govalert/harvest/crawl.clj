@@ -71,7 +71,7 @@
 (defmethod types/agendas :url [url]
   (fetch-agendas url))
 
-(defmethod types/agendas null [agendas]
+(defmethod types/agendas nil [agendas]
   (fetch-agendas (:url agendas)))
 
 (defmethod types/agendas "subgroup" [agendas]
