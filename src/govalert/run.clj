@@ -13,7 +13,7 @@
       (doseq [h (search/harvesters index)]
         (crawl h 
           :handle-agenda (partial (db/taking-index store/index-agenda) index) 
-          :handle-document (partial (db/taking-index store/index-attachment) index)))))
+          :handle-attachment (partial (db/taking-index store/index-attachment) index)))))
 
 (defn notify
   ([index & {server :server sender :sender}]

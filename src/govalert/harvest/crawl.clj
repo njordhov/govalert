@@ -165,7 +165,7 @@
 
 (defn crawl 
   "Generalized agenda crawler/dispatcher, finding attachments using DSL in resource definition"
-  [resource & {handle-agenda :handle-agenda handle-document :handle-document canonize :canonize verbose :verbose throttle :throttle}]
+  [resource & {handle-agenda :handle-agenda handle-attachment :handle-attachment canonize :canonize verbose :verbose throttle :throttle}]
   (doseq [agenda (lib/with-timeout (lib/sec 300) 
                    (get-agendas resource))]
     (if-let [url (primary-url agenda)]
@@ -195,7 +195,8 @@
                   (let [{href :href} ((or canonize canonical)(url-string (:uri doc)))                  
                         {content :content modified :modified}
                             (fetch-content (str href) nil)]
-                     (handle-document
+                     (handle-attachment
+                         :id (str href)
                          :content content
                          :timestamp modified
                          :url (str href)

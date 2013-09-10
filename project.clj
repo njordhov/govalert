@@ -16,11 +16,12 @@
                  [enlive "1.1.1"]
                  [clj-time "0.6.0"]
                  [clojurewerkz/elastisch "1.2.0"]
-                 [org.apache.pdfbox/pdfbox "1.7.1"]
                  [org.clojars.ogrim/feedparser-clj "0.4.0"]
                  [url-normalizer "0.5.3-1"]
                  [com.draines/postal "1.10.3"]
+                 [digest "1.3.0"]
 
+                 [org.apache.pdfbox/pdfbox "1.7.1"]
                  [org.apache.poi/poi-ooxml "3.10-beta1"]
                  [org.apache.poi/poi-scratchpad "3.10-beta1"]]
 
