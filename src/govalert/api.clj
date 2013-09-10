@@ -21,7 +21,7 @@
   (let [port (Integer. (or port (env :port) 5000))]
     (run-jetty (site app-routes) {:port port :join? false})))
 
-(defn -main [& [port es-endpoint]]
+(defn -main [es-endpoint & [port]]
   (assert es-endpoint)
   (db/init es-endpoint)
   (start-server port))
