@@ -10,7 +10,7 @@
             [net.cgrand.enlive-html :as html]))
 
 (html/deftemplate subscribe-html "../resources/public/index.html"
-  [{govbodies :govbodies}]
+  [& {govbodies :govbodies}]
   [:select]
   (html/clone-for [body govbodies]
     (html/content 
