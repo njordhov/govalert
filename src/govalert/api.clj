@@ -6,11 +6,20 @@
             [ring.util.response :as resp]
             [environ.core :refer [env]]
             [govalert.elastic.db :as db :refer (with-index)]
-            [govalert.elastic.store :as elastic]))
+            [govalert.elastic.store :as elastic]
+            [net.cgrand.enlive-html :as html]))
+
+(html/deftemplate subscribe-html "../resources/public/index.html"
+  [{govbodies :govbodies}]
+  [:select]
+  (html/clone-for [body govbodies]
+    (html/content 
+     {:tag :option :attrs {:value body} :content body}))) 
 
 (defroutes app-routes
   (GET "/" [] 
-    (resp/redirect "/index.html"))
+    ; (resp/redirect "/index.html")
+    (subscribe-html :govbodies (govalert.elastic.db/indices)))
   (POST "/subscribe" [govbody email query]
     (with-index govbody
       (elastic/add-subscription email query)))

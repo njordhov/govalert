@@ -33,17 +33,6 @@ Deploy the code:
 
     $ git push heroku master
 
-If you need to be able to submit subscriptions from web forms, ensure you have a dyno for the web process:
-
-    $ heroku ps:scale web=1
-    $ heroku ps
-
-A basic form is provided on the server to subscribe:
-
-    $ heroku open
-
-Customize the html file in the distribution, or submit another form to the same location.
-
 ## Heroku Setup
 
 The file called Procfile in the govalert root directory defines Heroku run actions.
@@ -96,6 +85,19 @@ Please carefully read the Scheduler instructions if you're setting up production
 crawling massive document repositories: 
 https://devcenter.heroku.com/articles/scheduler
 
+## Subscribing to Alerts
+
+If you need to be able to submit subscriptions from web forms, ensure you have a Heroku dyno for the web process:
+
+    $ heroku ps:scale web=1
+    $ heroku ps
+
+A basic form is provided on the server to subscribe:
+
+    $ heroku open
+
+Customize the html file in the distribution, or submit another form to the same location.
+
 ## ElasticSearch JSON Harvesting patterns
 
 Crawling the Granicus server for Encinitas:
@@ -131,20 +133,17 @@ Harvesting the various subcommittees of San Diego County:
       "govbody" : "ca.sd",
       "agendas" : {"mode" : "govdelivery",
                    "url" : "http://bosagenda.sdcounty.ca.gov/agendadocs/materials.jsp",
-                   "sub" : "Regular",
+                   "sub" : ["Air Pollution",
+                            "Flood",
+                            "Sanitation",
+                            "Housing Authority",
+                            "Redevelopment Successor Agency",
+                            "Regular",
+                            "Special Meeting",
+                            "IHSS", 
+                            "Regular Old"],
                    "history" : 30}}
 
-For additional subcommittees, substitute "Regular" with any of:
-
-  "Air Pollution"
-  "Flood"
-  "Sanitation"
-  "Housing Authority"
-  "Redevelopment Successor Agency"
-  "Regular"
-  "Special Meeting"
-  "IHSS" 
-  "Regular Old"
 
 Note that to have multiple search patterns for the same govbody, each has to be given a name whe using setup or the ElasticSearch API.
 
