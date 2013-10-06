@@ -66,7 +66,9 @@
              :docs {:mode "govdelivery" :datestamp datestamp :sub sub :url url})))
 
 (defmethod types/agendas "govdelivery" [agendas]
-  (govdelivery-agendas (:url agendas) (:sub agendas) (:history agendas)))
+  (mapcat 
+    #(govdelivery-agendas (:url agendas) % (:history agendas))
+    (:sub agendas)))
 
 (defmethod types/attachments "govdelivery" [{docs :docs}]
   (agendadocs (:url docs) (:sub docs) (:datestamp docs)))

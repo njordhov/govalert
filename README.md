@@ -48,7 +48,11 @@ Customize the html file in the distribution, or submit another form to the same 
 
 The file called Procfile in the govalert root directory defines Heroku run actions.
 
-You can run init to migrate the ElasticSearch database and add harvesting rules. 
+Take a look at the harvesting rules example file.
+
+You can run setup to migrate the ElasticSearch database and add harvesting rules from the file.
+
+Optionally run set to add harvesting rules. 
 For example, this will define a crawler for the City of La Mesa in the default index (all quotes, ampersands and slashes have to be escaped with a backslash - 
 see separate section for various JSON crawl patterns):
 
