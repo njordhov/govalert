@@ -4,7 +4,7 @@
 (defn uri-coll [item]
   (if (coll? (:uri item)) (:uri item) (list (:uri item))))
 
-(def email-template "../resources/email-template.html")
+(def email-template (.toURI (java.io.File. "../resources/email-template.html")))
 
 (defn format-email [result & [template-source]]
   (html/emit*
