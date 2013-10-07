@@ -63,6 +63,21 @@ To make a test run harvesting documents and broadcasting alerts, run a notify co
 Expect to receive emails to the admin/reply address regarding the harvesting, 
 as well as email notifications for the subscriptions added using the web form or directly using the ElastocSearch API.  
 
+## Subscribing to Alerts
+
+If you need to be able to submit subscriptions from web forms, ensure you have a Heroku dyno for the web process:
+
+    $ heroku ps:scale web=1
+    $ heroku ps
+
+A basic form is provided on the server to subscribe:
+
+    $ heroku open
+
+Customize the html file in the distribution, or submit another form to the same location.
+
+## Scheduling Alerts
+
 You can set up regular harvesting of government documents and alerts
 by adding the free Heroku Scheduler and open its dashboard:
 
@@ -80,19 +95,6 @@ On the Scheduler Dashboard:
 Please carefully read the Scheduler instructions if you're setting up production deployment
 crawling massive document repositories: 
 https://devcenter.heroku.com/articles/scheduler
-
-## Subscribing to Alerts
-
-If you need to be able to submit subscriptions from web forms, ensure you have a Heroku dyno for the web process:
-
-    $ heroku ps:scale web=1
-    $ heroku ps
-
-A basic form is provided on the server to subscribe:
-
-    $ heroku open
-
-Customize the html file in the distribution, or submit another form to the same location.
 
 ## ElasticSearch JSON Harvesting patterns
 
@@ -143,7 +145,7 @@ Harvesting the various subcommittees of San Diego County:
 
 Note that to have multiple search patterns for the same govbody, each has to be given a name whe using setup or the ElasticSearch API.
 
-## Managing subscriptions and harvesters with the ElasticSearch API
+## Using the ElasticSearch API
 
 The ElasticSearch API is documented at:
 
