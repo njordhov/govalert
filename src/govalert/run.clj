@@ -17,17 +17,20 @@
 
 (defn notify
   ([index & {server :server sender :sender}]
-      (doseq [{email :email query :query updated :updated}
+      (doseq [{email :email query :query updated :updated :as subscription}
               (search/subscriptions index)]
-        (let [{c :count html :html updated :updated}
-              (broadcast-alert email query
+        (try 
+          (let [{c :count html :html updated :updated}
+            (broadcast-alert email query
                 :govbody index
                 :after updated
                 :sender sender
                 :server server)]
-          (if updated
-            (store/add-subscription :email email :query query :updated updated))
-          (log/info "Alerted" email "for query" query "on" index "with"  c "matches.")))))
+            (if updated
+              (store/add-subscription :email email :query query :updated updated))
+            (log/info "Alerted" email "for query" query "on" index "with"  c "matches."))
+          (catch Exception e
+            (log/error "Failed to notify for" index "subscription" subscription))))))
 
 (defn -main [& args]
   (let [[es-endpoint email-host email-user email-pass email-admin index] args

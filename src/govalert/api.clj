@@ -22,7 +22,7 @@
     (subscribe-html :govbodies (govalert.elastic.db/indices)))
   (POST "/subscribe" [govbody email query]
     (with-index govbody
-      (elastic/add-subscription email query)))
+      (elastic/add-subscription :email email :query query)))
   (route/resources "/")
   (route/not-found "Not Found"))
 
