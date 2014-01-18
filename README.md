@@ -46,9 +46,14 @@ see separate section for various JSON crawl patterns):
 For convenience, you may automatically escape the harvesting pattern from a multiline input, ending with ctrl-d:
 
     $ sed -e "s/'/\'/g" -e 's/"/\"/g' -e "s/&/\&/g" -e "1s/^/\\'/" -e "\$s/\$/\\'/" | xargs -0 heroku run setup gov 
-       {"title" : "La Mesa",
-        "govbody" : "us.ca.lamesa",
-        "agendas" : {"url" : "http://www.cityoflamesa.com/archive.aspx?AMID=30&Type=&ADID="}}
+      {"title" : "Carlsbad",
+       "govbody" : "ca.sd.carlsbad",
+       "agendas" : {"mode" : "granicus",
+                    "url" : "http://carlsbad.granicus.com/ViewPublisherRSS.php",
+                    "args" : {"view_id" : "6",
+                              "mode" : "agendas"}}}
+
+
 
 See the section below for other harvesting patterns.
 
@@ -56,7 +61,7 @@ Run setup with no arguments at any time to list all database indices and their a
 
     $ heroku run setup
 
-To make a test run harvesting documents and broadcasting alerts, run a notify command, preferably with an admin/reply email address as additional argument:
+To make a test run harvesting documents and broadcasting alerts, run a notify command (preferably with an admin/reply email address as additional argument):
 
     $ heroku run notify
 

@@ -1,4 +1,4 @@
-(defproject govalert "0.8.0.1"
+(defproject govalert "0.8.0.2"
   :description "Build an index of agendas and their attachments to broadcast alerts of new additions matching search queries"
   :url "http://govalert.me"
   :license {:name "Eclipse Public License"
