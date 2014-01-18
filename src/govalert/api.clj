@@ -21,7 +21,6 @@
     ; (resp/redirect "/index.html")
     (subscribe-html :govbodies (govalert.elastic.db/indices)))
   (POST "/subscribe" [govbody email query]
-    (assert (every? string? [govbody email query]))
     (with-index govbody
       (elastic/add-subscription :email email :query query))
     "Subscribed")

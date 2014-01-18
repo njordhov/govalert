@@ -22,17 +22,9 @@
 
 (defn rfc1123-timestamp [s]
   (if s (time-format/parse (clojure.string/replace s #"GMT" "+0000"))))
-  
-;; (time-format/show-formatters)
-;; (rfc1123-timestamp "Fri, 02 Aug 2013 07:09:34 GMT")
-;; (time-format/parse :rfc822 "Fri, 02 Aug 2013 07:09:34 GMT")
-
-;(defn http-get [uri & args]
-;  (client/get uri (assoc args :socket-timeout 5000 :conn-timeout 5000)))
 
 (defn extract-links 
   "Extract all links"
-  ;; ### eliminate repeted http requests!!
   [url & {params :params selector :selector}]
   (let [{headers :headers body :body} (http-get url :as :byte-array :query-params params)
          modified (get headers "last-modified" nil)
@@ -40,7 +32,7 @@
          url (lib/url-str url params)]
       (cond
         (re-find #"application/pdf" content-type)
-          (pdf/extract-links (java.net.URL. url ))
+          (pdf/extract-links (java.net.URL. url))
         (re-find #"text/html" content-type)  
           (html/extract-links url selector)
         :else (println "Unknown links content type" content-type))))
@@ -117,7 +109,7 @@
     (apply concat (dissoc agenda :docs)))])
 
 (defmethod types/attachments "sire" [agenda]
-    ;; Sire genda links to group of linked support documents
+    ;; Sire agenda links to group of linked support documents
    (sire/agenda-attachments agenda))
 
 (defmethod types/attachments nil [agenda]
@@ -139,7 +131,7 @@
          modified (get headers "last-modified" nil)
          content-type (get headers "content-type" nil)
          stream (java.io.ByteArrayInputStream. body)]
-    {:modified (rfc1123-timestamp modified) ;; ## can be spoofed
+    {:modified (rfc1123-timestamp modified)
      :content
        (cond
          (re-find #"application/pdf" content-type)

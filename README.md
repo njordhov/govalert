@@ -38,8 +38,7 @@ Deploy the code:
 The file called Procfile in the govalert root directory defines Heroku run actions.
 
 You can run setup to migrate the ElasticSearch database and add harvesting rules. 
-For example, this will define a crawler for the City of La Mesa in the default index (all quotes, ampersands and slashes have to be escaped with a backslash - 
-see separate section for various JSON crawl patterns):
+For example, this will define a crawler for the City of La Mesa in the default index (all quotes, ampersands and slashes have to be escaped with a backslash - see separate section for various JSON crawl patterns):
 
     $ heroku run setup gov \'{\"title\":\"La Mesa\",\"govbody\":\"us.ca.lamesa\",\"agendas\":{\"url\":\"http://www.cityoflamesa.com/archive.aspx?AMID=30\&Type=\&ADID=\"}}\'
 
@@ -198,5 +197,7 @@ You can add subscriptions:
 ## License
 
 Copyright © 2013
+
+Made possible through a generous grant from the Knight Foundation.
 
 Distributed under the Eclipse Public License, the same as Clojure.
