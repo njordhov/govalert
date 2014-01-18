@@ -33,7 +33,7 @@
             (log/error "Failed to notify for" index "subscription" subscription))))))
 
 (defn db-count [index]
-  (with-index index 
+  (db/with-index index 
     [(search/count-all-agendas)
      (search/count-all-docs)]))
 
@@ -54,7 +54,8 @@
               (doseq [index (if index [index] (db/indices))]
                  (let [[n-agendas n-docs] (db-count index)]
                    (harvest index)
-                   (log/info "Harvested" (- n-agendas (first (db-count index))) "agendas and" (- n-docs (second (db-count index))) "attachments."))
+                   (let [[na2 nd2] (db-count index)]
+                     (log/info "Harvested" (- n-agendas na2) "of" na2 "agendas and" (- n-docs nd2) "of" nd2 "attachments.")))
                  (notify index :server srv :sender email-admin)))
          ;(catch Exception e 
          ;  (feedback (str "Harvest failed" tag) (.getMessage e)))
