@@ -21,7 +21,7 @@
            (if timestamp {:timestamp (to-long timestamp)} ))))
 
 (defn add-subscription [& {email :email query :query updated :updated :as args}]
-  (assert (every? string? [govbody email query]))
+  (assert (every? string? [email query]))
   (esd/put db/current-index "subscription" (str email ":" query) {:email email :query query :updated (if updated (to-long updated))}))
 
 (defn add-harvester [name & {title :title govbody :govbody agendas :agendas docs :docs :as spec}]
