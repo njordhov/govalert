@@ -124,7 +124,7 @@ Crawl America's Finest City:
                                "client" : "scs_ocd",
                                "filter" : "0",
                                "site" : "documents",
-                                "q" : "Council+inmeta:DOC_DATE_NUM:20130101..20140101"}},
+                                "q" : "Council+inmeta:DOC_DATE_NUM:20130101..20230101"}},
          "docs" : {"mode" : "sire",
                    "url" : "http://dockets.sandiego.gov/sirepub/agview.aspx?agviewdoctype=Agenda&agviewmeetid="}}
 
@@ -147,7 +147,7 @@ Harvesting the various subcommittees of San Diego County:
                    "history" : 30}}
 
 
-Note that to have multiple search patterns for the same govbody, each has to be given a name whe using setup or the ElasticSearch API.
+Note that to have multiple search patterns for the same govbody, each has to be given a name when using setup or the ElasticSearch API.
 
 ## Using the ElasticSearch API
 
@@ -196,8 +196,6 @@ You can add subscriptions:
 
 ## License
 
-Copyright © 2013
-
-Made possible through a generous grant from the Knight Foundation.
-
+Copyright © 2013-2014
+Made possible by a generous grant from the Knight Foundation.
 Distributed under the Eclipse Public License, the same as Clojure.

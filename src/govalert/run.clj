@@ -10,7 +10,7 @@
 
 (defn harvest 
   ([index]
-      (doseq [h (search/harvesters index)]
+     (doseq [h (search/harvesters index)]
         (crawl h 
           :handle-agenda (partial (db/taking-index store/index-agenda) index) 
           :handle-attachment (partial (db/taking-index store/index-attachment) index)))))
@@ -32,6 +32,11 @@
           (catch Exception e
             (log/error "Failed to notify for" index "subscription" subscription))))))
 
+(defn db-count [index]
+  (with-index index 
+    [(search/count-all-agendas)
+     (search/count-all-docs)]))
+
 (defn -main [& args]
   (let [[es-endpoint email-host email-user email-pass email-admin index] args
          tag (if index (str " for " index) "")]
@@ -47,7 +52,9 @@
           (do (assert es-endpoint)
               (db/init es-endpoint)
               (doseq [index (if index [index] (db/indices))]
-                 (harvest index)
+                 (let [[n-agendas n-docs] (db-count index)]
+                   (harvest index)
+                   (log/info "Harvested" (- n-agendas (first (db-count index))) "agendas and" (- n-docs (second (db-count index))) "attachments."))
                  (notify index :server srv :sender email-admin)))
          ;(catch Exception e 
          ;  (feedback (str "Harvest failed" tag) (.getMessage e)))
