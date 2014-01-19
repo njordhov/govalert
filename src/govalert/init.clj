@@ -26,7 +26,7 @@
         (doseq [h (harvesters index)]
           (println (json/generate-string h {:pretty true :escape-non-ascii true}))))) )
   ([es-endpoint index harvest-spec]
-    (-main es-endpoint index index harvest-spec))
+    (-main es-endpoint index nil harvest-spec))
   ([es-endpoint harvest-spec]
     (-main es-endpoint nil harvest-spec))
   ([es-endpoint]
