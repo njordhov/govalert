@@ -42,7 +42,7 @@ For example, this will define a crawler for the City of La Mesa in the default i
 
     $ heroku run setup gov \'{\"title\":\"La Mesa\",\"govbody\":\"us.ca.lamesa\",\"agendas\":{\"url\":\"http://www.cityoflamesa.com/archive.aspx?AMID=30\&Type=\&ADID=\"}}\'
 
-For convenience, you may automatically escape the harvesting pattern from a multiline input, ending with ctrl-d:
+For convenience, you may automatically escape the harvesting pattern from a multiline input:
 
     $ sed -e "s/'/\'/g" -e 's/"/\"/g' -e "s/&/\&/g" -e "1s/^/\\'/" -e "\$s/\$/\\'/" | xargs -0 heroku run setup gov 
       {"title" : "Carlsbad",
@@ -52,20 +52,13 @@ For convenience, you may automatically escape the harvesting pattern from a mult
                     "args" : {"view_id" : "6",
                               "mode" : "agendas"}}}
 
-
+Make sure to end the multiline input with ctrl-d.
 
 See the section below for other harvesting patterns.
 
 Run setup with no arguments at any time to list all database indices and their associated harvesting rules:
 
     $ heroku run setup
-
-To make a test run harvesting documents and broadcasting alerts, run a notify command (preferably with an admin/reply email address as additional argument):
-
-    $ heroku run notify
-
-Expect to receive emails to the admin/reply address regarding the harvesting, 
-as well as email notifications for the subscriptions added using the web form or directly using the ElastocSearch API.  
 
 ## Subscribing to Alerts
 
@@ -79,6 +72,15 @@ A basic form is provided on the server to subscribe:
     $ heroku open
 
 Customize the html file in the distribution, or submit another form to the same location.
+
+## Broadcasting Alerts
+
+To make a test run harvesting documents and broadcasting alerts, run a notify command (preferably with an admin/reply email address as additional argument):
+
+    $ heroku run notify
+
+Expect to receive emails to the admin/reply address regarding the harvesting, 
+as well as email notifications for the subscriptions added using the web form or directly using the ElastocSearch API.  
 
 ## Scheduling Alerts
 

@@ -19,7 +19,7 @@
       (db/init es-endpoint)
       (migrate index)
       (if spec
-        (do (println (add-json-harvester index (or name index) spec))
+        (do (println (add-json-harvester index name spec))
             (db/refresh index)))
       (doseq [index (if (empty? index) (db/indices) [index])]
         (println index ":")
