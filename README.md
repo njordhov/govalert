@@ -67,7 +67,7 @@ If you need to be able to submit subscriptions from web forms, ensure you have a
     $ heroku ps:scale web=1
     $ heroku ps
 
-A basic form is provided on the server to subscribe:
+A basic web page with a subscription form is now available:
 
     $ heroku open
 
@@ -79,8 +79,7 @@ To make a test run harvesting documents and broadcasting alerts, run a notify co
 
     $ heroku run notify
 
-Expect to receive emails to the admin/reply address regarding the harvesting, 
-as well as email notifications for the subscriptions added using the web form or directly using the ElastocSearch API.  
+Expect to receive emails to the admin/reply address regarding the harvesting, as well as email notifications for the subscriptions.  
 
 ## Scheduling Alerts
 
