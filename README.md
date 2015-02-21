@@ -1,6 +1,6 @@
 # Govalert
 
-Get timely notifications about new important government agenda items posted online! This system notifies subscribers whenever an agenda item is posted on an issue they care about. It crawls specified websites for new meeting agendas and attachements, then sends  email alerts to subscribers with links to new agendas containing specified keywords.
+Get timely notifications about new important government agenda items posted online! This system notifies subscribers when items they care about is on the agenda. It crawls specified websites for new meeting agendas and attachements, then sends  email alerts to subscribers with links to newly posted agendas matching specified keywords or search queries.
 
 ## Usage
 
