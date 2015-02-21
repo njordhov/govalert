@@ -1,6 +1,6 @@
 # Govalert
 
-Get timely notifications before important meetings happens! This service alerts subscribers when topics they care about are on the agenda for a meeting. It monitors specified websites for new meeting agendas and attachements, sending email alerts to subscribers with links to newly posted agendas matching specified keywords or search queries.
+Get timely notifications before relevant meetings happens! This service alerts subscribers when topics they care about are on the agenda for a meeting. It monitors specified websites for new meeting agendas and attachements, sending email alerts to subscribers with links to newly posted agendas matching specified keywords or search queries.
 
 The development of this open source implementation was funded by a generous grant from the Knight Foundation.
 
