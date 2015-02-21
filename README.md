@@ -103,6 +103,8 @@ https://devcenter.heroku.com/articles/scheduler
 
 ## ElasticSearch JSON Harvesting patterns
 
+The current version supports crawling limited variations of government agendas published online. Additional types of government agendas can be supported by implementing new harvesting patterns. Email us for further information. 
+
 Crawling the Granicus server for Encinitas:
 
     {"govbody" : "ca.sd.encinitas",
