@@ -2,7 +2,7 @@
 
 **Get timely notifications before relevant meetings happens!** This service alerts subscribers when topics they care about are on the agenda for a meeting. It monitors specified websites for new meeting agendas and attachements, sending email alerts to subscribers with links to newly posted agendas matching specified keywords or search queries.
 
-***The development of this open source implementation was funded by a generous grant from the [Knight Prototype Fund](http://www.knightfoundation.org/funding-initiatives/knight-prototype-fund/).***
+***The development of this open source implementation was sponsored by a generous grant from the [Knight Prototype Fund](http://www.knightfoundation.org/funding-initiatives/knight-prototype-fund/).***
 
 ## Usage
 
